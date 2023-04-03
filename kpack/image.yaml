@@ -1,0 +1,19 @@
+apiVersion: kpack.io/v1alpha2
+kind: Image
+metadata:
+  name: test-buildpacks-image
+  namespace: default
+spec:
+  tag: luke4roma/test-buildpacks
+  serviceAccountName: dockerhub-service-account
+  builder:
+    name: my-builder
+    kind: Builder
+  source:
+    git:
+      url: https://github.com/seb-luke/test-buildpacks
+      revision: main
+build:
+  env:
+    - name: BP_JAVA_VERSION
+      value: 17
